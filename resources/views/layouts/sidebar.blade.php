@@ -33,16 +33,10 @@
                     <!-- Main -->
                     <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i>
                     </li>
-                    <li class="{{ request()->is('admin') ? 'active' : '' }}">
-                        <a href="#">
+                    <li class="{{ request()->is('employee*') ? 'active' : '' }}">
+                        <a href="{{ route('employee.index') }}">
                             <i class="icon-home2"></i>
-                            <span>Main DataBase</span>
-                        </a>
-                    </li>
-                    <li class="{{ request()->is('student') ? 'active' : '' }}">
-                        <a href="#">
-                            <i class="icon-users"></i>
-                            <span>Working DB</span>
+                            <span>Employees</span>
                         </a>
                     </li>
                     <!-- /main -->

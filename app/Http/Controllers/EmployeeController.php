@@ -15,7 +15,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $employee['employee'] = Employee::get();
+        return view('employee.list', $employee);
     }
 
     /**

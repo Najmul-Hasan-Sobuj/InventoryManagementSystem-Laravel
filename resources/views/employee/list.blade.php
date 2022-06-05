@@ -1,50 +1,72 @@
-@extends('Backend.layouts.app')
-@section('title')
-Team Members
-@endsection
+@extends('layouts.app')
 @section('content')
-<div class="row mt-4">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">DataTable with default features</h3>
-                <a href="{{ route('team.create') }}" class="btn btn-success float-right"  >Add</a>
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h5 class="panel-title">Batch Class List</h5>
+            <div class="heading-elements">
+                <ul class="icons-list" style="margin-top: 0px">
+                    <li style="margin-right: 10px;"><a href="{{ route('employee.create') }}"
+                            class="btn btn-info add-new">Add New</a></li>
+                    <li><a data-action="collapse"></a></li>
+                    <li><a data-action="reload"></a></li>
+                    <li><a data-action="close"></a></li>
+                </ul>
             </div>
-            <!-- /.card-header -->
-            <div class="card-body table-responsive">
-                <table id="example1" class="table table-bordered table-striped table-hover text-nowrap">
-                    <thead>
-                        <tr>
-                            <th>SL</th>
-                            <th>Name</th>
-                            <th>Skill</th>
-                            <th>Designation</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    @if ($teams)
-                    <tbody>
-                            @foreach ($teams as $key => $team)
-                            <tr>
-                                <td>{{ ++$key }}</td>
-                                <td>{{ $team->name }}</td>
-                                <td>{{ $team->skills }}</td>
-                                <td>{{ $team->designation }}</td>
-                                <td class="text-center">
-                                    <a href="{{ route('team.show', [$team->id]) }}" class="btn btn-app-sm bg-success view_btn"> <i class="fas fa-eye"></i></a>
-                                    <a href="{{ route('team.edit', [$team->id]) }}" class="btn btn-app-sm bg-primary edit_btn"> <i class="fas fa-edit"></i></a>
-                                    <a id="destroy" href="{{ route('team.destroy', [$team->id]) }}" class="btn btn-app-sm bg-danger delete_btn" > @csrf <i class="fas fa-trash"></i></a>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                        @endif
-                        
-                </table>
-            </div>
-            <!-- /.card-body -->
         </div>
+        <table id="studentTable" class="table table-togglable table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th data-toggle="true">SL</th>
+                    <th data-hide="phone,tablet">name</th>
+                    <th data-hide="phone,tablet">email</th>
+                    <th data-hide="phone,,tablet">phone</th>
+                    <th data-hide="phone,,tablet">address</th>
+                    <th data-hide="phone,,tablet">experience</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            @if ($employee)
+                <tbody>
+                    @foreach ($employee as $key => $employees)
+                        <tr>
+                            <td>{{ ++$key }}</td>
+                            <td>{{ $employees->name }}</td>
+                            <td>{{ $employees->email }}</td>
+                            <td>{{ $employees->phone }}</td>
+                            <td>{{ $employees->address }}</td>
+                            <td>{{ $employees->experience }}</td>
+                            <td class="text-center">
+                                <ul class="icons-list">
+                                    <li class="text-primary-600">
+                                        <a href="{{ route('employee.edit', [$employees->id]) }}">
+                                            <i class="icon-pencil7"></i>
+                                        </a>
+                                    </li>
+                                    <li class="text-danger-600">
+                                        <a id="trash" href="{{ route('employee.destroy', [$employees->id]) }}"> @csrf
+                                            <i class="icon-trash"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            @endif
+        </table>
     </div>
-</div>
-
 @endsection
+
+@push('script')
+    <script type="text/javascript">
+        $('#studentTable').DataTable({
+            dom: 'lBfrtip',
+            "iDisplayLength": 10,
+            "lengthMenu": [10, 25, 30, 50],
+            columnDefs: [{
+                'orderable': false,
+                "targets": 6
+            }]
+        });
+    </script>
+@endpush

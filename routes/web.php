@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.app');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('dashboard');
+Route::resource('employee', App\Http\Controllers\EmployeeController::class);
