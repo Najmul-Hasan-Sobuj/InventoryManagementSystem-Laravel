@@ -2,10 +2,10 @@
 @section('content')
     <div class="panel panel-flat">
         <div class="panel-heading">
-            <h5 class="panel-title">Employee Update</h5>
+            <h5 class="panel-title">Customer Update</h5>
             <div class="heading-elements">
                 <ul class="icons-list" style="margin-top: 0px">
-                    <li style="margin-right: 10px;"><a href="{{ route('employee.index') }}"
+                    <li style="margin-right: 10px;"><a href="{{ route('customer.index') }}"
                             class="btn btn-info add-new">Back</a></li>
                     <li><a data-action="collapse"></a></li>
                     <li><a data-action="reload"></a></li>
@@ -21,7 +21,7 @@
                 with
                 default error messages in english and translations into 37 other languages.</p>
             <form id="" class="form-horizontal form-validate-jquery"
-                action="{{ route('employee.update', [$employee->id]) }}" method="POST" enctype="multipart/form-data">
+                action="{{ route('customer.update', [$customer->id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <fieldset class="content-group">
@@ -29,14 +29,14 @@
                     <div class="form-group">
                         <label class="control-label col-lg-2">Full Name</label>
                         <div class="col-lg-9">
-                            <input type="text" name="name" value="{{ $employee->name }}" class="form-control"
+                            <input type="text" name="name" class="form-control" value="{{ $customer->name }}"
                                 placeholder="Enter Your Full Name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-2">Email Address</label>
                         <div class="col-lg-9">
-                            <input type="email" name="email" value="{{ $employee->email }}" class="form-control"
+                            <input type="email" name="email" class="form-control" value="{{ $customer->email }}"
                                 placeholder="Enter Your Email Address">
                         </div>
                     </div>
@@ -44,8 +44,8 @@
                     <div class="form-group">
                         <label class="control-label col-lg-2">Mobile</label>
                         <div class="col-lg-9">
-                            <input type="text" name="phone" value="{{ $employee->phone }}" class="form-control"
-                                id="phone" placeholder="Enter your valid phone Number">
+                            <input type="text" name="phone" class="form-control" id="phone"
+                                value="{{ $customer->phone }}" placeholder="Enter your valid phone Number">
                         </div>
                     </div>
                     <!-- /phone field -->
@@ -53,48 +53,54 @@
                     <div class="form-group">
                         <label class="control-label col-lg-2">Address</label>
                         <div class="col-lg-9">
-                            <input type="text" name="address" value="{{ $employee->address }}" class="form-control"
-                                id="address" placeholder="Enter your presente address">
+                            <input type="text" name="address" class="form-control" id="address"
+                                value="{{ $customer->address }}" placeholder="Enter your presente address">
                         </div>
                     </div>
                     <!-- /address field -->
                     <!-- experience field -->
                     <div class="form-group">
-                        <label class="control-label col-lg-2">Experience</label>
+                        <label class="control-label col-lg-2">Shop Name</label>
                         <div class="col-lg-9">
-                            <input type="text" name="experience" value="{{ $employee->experience }}"
-                                class="form-control" id="experience" placeholder="Enter your experience. e.g: Yes/No">
+                            <input type="text" name="shop_name" class="form-control" id="shop_name"
+                                value="{{ $customer->shop_name }}" placeholder="Enter your Shop Name">
                         </div>
                     </div>
-                    <!-- /experience field -->
-                    <div class="form-group">
-                        <label class="control-label col-lg-2">Employee Photo</label>
-                        <div class="col-lg-9">
-                            <input type="file" name="image" class="file-styled">
-                        </div>
-                    </div>
-                    <!-- /styled file uploader -->
                     <!-- salary field -->
                     <div class="form-group">
-                        <label class="control-label col-lg-2">Salary</label>
+                        <label class="control-label col-lg-2">Account Holder Name</label>
                         <div class="col-lg-9">
-                            <input type="text" name="salary" value="{{ $employee->salary }}" class="form-control"
-                                id="salary" placeholder="Enter your salary. e.g: 50000">
+                            <input type="text" name="account_holder" class="form-control" id="account_holder"
+                                value="{{ $customer->account_holder }}" placeholder="Enter your account Holder name.">
                         </div>
                     </div>
                     <!-- /salary field -->
                     <!-- vacation field -->
                     <div class="form-group">
-                        <label class="control-label col-lg-2">Vacation</label>
+                        <label class="control-label col-lg-2">Account Number</label>
                         <div class="col-lg-9">
-                            <input type="text" name="vacation" value="{{ $employee->vacation }}" class="form-control"
-                                id="vacation" placeholder="Enter your number of vacation">
+                            <input type="text" name="account_number" class="form-control" id="account_number"
+                                value="{{ $customer->account_number }}" placeholder="Enter your account Number">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-2">Bank Name</label>
+                        <div class="col-lg-9">
+                            <input type="text" name="bank_name" class="form-control" id="bank_name"
+                                value="{{ $customer->bank_name }}" placeholder="Enter your Bank Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-2">Branch Name</label>
+                        <div class="col-lg-9">
+                            <input type="text" name="bank_branch" class="form-control" id="bank_branch"
+                                value="{{ $customer->bank_branch }}" placeholder="Enter your Branch Name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-2">City</label>
                         <div class="col-lg-9">
-                            <input type="text" name="city" value="{{ $employee->city }}" class="form-control" id="city"
+                            <input type="text" name="city" class="form-control" id="city" value="{{ $customer->city }}"
                                 placeholder="Enter your city name">
                         </div>
                     </div>

@@ -2,10 +2,10 @@
 @section('content')
     <div class="panel panel-flat">
         <div class="panel-heading">
-            <h5 class="panel-title">All Employee Details</h5>
+            <h5 class="panel-title">All Customer Details</h5>
             <div class="heading-elements">
                 <ul class="icons-list" style="margin-top: 0px">
-                    <li style="margin-right: 10px;"><a href="{{ route('employee.create') }}"
+                    <li style="margin-right: 10px;"><a href="{{ route('customer.create') }}"
                             class="btn btn-info add-new">Add New</a></li>
                     <li><a data-action="collapse"></a></li>
                     <li><a data-action="reload"></a></li>
@@ -18,39 +18,35 @@
                 <tr>
                     <th data-toggle="true">SL</th>
                     <th data-hide="phone,tablet">name</th>
-                    <th data-hide="phone,tablet">email</th>
-                    <th data-hide="phone,,tablet">phone</th>
-                    <th data-hide="phone,,tablet">address</th>
-                    <th data-hide="phone,,tablet">experience</th>
+                    <th data-hide="phone,tablet">phone</th>
+                    <th data-hide="phone,,tablet">shop_name</th>
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
-            @if ($employee)
+            @if ($customer)
                 <tbody>
-                    @foreach ($employee as $key => $employees)
+                    @foreach ($customer as $key => $customers)
                         <tr>
                             <td>{{ ++$key }}</td>
-                            <td>{{ $employees->name }}</td>
-                            <td>{{ $employees->email }}</td>
-                            <td>{{ $employees->phone }}</td>
-                            <td>{{ $employees->address }}</td>
-                            <td>{{ $employees->experience }}</td>
+                            <td>{{ $customers->name }}</td>
+                            <td>{{ $customers->phone }}</td>
+                            <td>{{ $customers->address }}</td>
                             <td class="text-center">
                                 <ul class="icons-list">
                                     <li class="text-success-600">
-                                        <a href="{{ route('employee.show', [$employees->id]) }}">
+                                        <a href="{{ route('customer.show', [$customers->id]) }}">
                                             <i class="icon-eye"></i>
                                         </a>
                                     </li>
                                     <li class="text-primary-600">
-                                        <a href="{{ route('employee.edit', [$employees->id]) }}">
+                                        <a href="{{ route('customer.edit', [$customers->id]) }}">
                                             <i class="icon-pencil7"></i>
                                         </a>
                                     </li>
                                     <li class="text-danger-600">
                                         <a href="#">
                                             <i class="icon-trash" id="delete"
-                                                delete-link="{{ route('employee.destroy', [$employees->id]) }}"> @csrf</i>
+                                                delete-link="{{ route('customer.destroy', [$customers->id]) }}"> @csrf</i>
                                         </a>
                                     </li>
                                 </ul>
@@ -71,7 +67,7 @@
             "lengthMenu": [10, 25, 30, 50],
             columnDefs: [{
                 'orderable': false,
-                "targets": 6
+                "targets": 4
             }]
         });
     </script>

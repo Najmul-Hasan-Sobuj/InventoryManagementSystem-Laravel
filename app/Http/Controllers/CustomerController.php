@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Helper;
-use App\Models\Employee;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
-class EmployeeController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $data['employee'] = Employee::get();
-        return view('employee.list', $data);
+        $data['customer'] = Customer::get();
+        return view('customer.list', $data);
     }
 
     /**
@@ -29,7 +29,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('employee.create');
+        return view('customer.create');
     }
 
     /**
@@ -41,15 +41,17 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $validation = Validator::make($request->all(), [
-            'name'       => 'required',
-            'email'      => 'required',
-            'phone'      => 'required',
-            'address'    => 'required',
-            'experience' => 'required',
-            'image'      => 'required',
-            'salary'     => 'required',
-            'vacation'   => 'required',
-            'city'       => 'required',
+            'name'           => 'required',
+            'email'          => 'required',
+            'phone'          => 'required',
+            'address'        => 'required',
+            'shop_name'      => 'required',
+            'image'          => 'required',
+            'account_holder' => 'required',
+            'account_number' => 'required',
+            'bank_name'      => 'required',
+            'bank_branch'    => 'required',
+            'city'           => 'required',
         ]);
 
         if ($validation->passes()) {
@@ -57,16 +59,18 @@ class EmployeeController extends Controller
             $globalFunImg =  Helper::imageUpload($mainFile);
 
             if ($globalFunImg['status'] == 1) {
-                Employee::create([
-                    'name'       => $request->name,
-                    'email'      => $request->email,
-                    'phone'      => $request->phone,
-                    'address'    => $request->address,
-                    'experience' => $request->experience,
-                    'salary'     => $request->salary,
-                    'vacation'   => $request->vacation,
-                    'city'       => $request->city,
-                    'photo'      => $globalFunImg['filaName'],
+                Customer::create([
+                    'name'           => $request->name,
+                    'email'          => $request->email,
+                    'phone'          => $request->phone,
+                    'address'        => $request->address,
+                    'shop_name'      => $request->shop_name,
+                    'photo'          => $globalFunImg['filaName'],
+                    'account_holder' => $request->account_holder,
+                    'account_number' => $request->account_number,
+                    'bank_name'      => $request->bank_name,
+                    'bank_branch'    => $request->bank_branch,
+                    'city'           => $request->city,
                 ]);
                 Toastr::success('Post added successfully');
                 return redirect()->back();
@@ -91,8 +95,8 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        $data['employee'] = Employee::find($id);
-        return view('employee.view', $data);
+        $data['customer'] = Customer::find($id)->first();
+        return view('customer.view', $data);
     }
 
     /**
@@ -103,8 +107,8 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        $data['employee'] = Employee::find($id);
-        return view('employee.update', $data);
+        $data['customer'] = Customer::find($id);
+        return view('customer.update', $data);
     }
 
     /**
@@ -117,41 +121,45 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
         $validation = Validator::make($request->all(), [
-            'name'       => 'required',
-            'email'      => 'required',
-            'phone'      => 'required',
-            'address'    => 'required',
-            'experience' => 'required',
-            'salary'     => 'required',
-            'vacation'   => 'required',
-            'city'       => 'required',
+            'name'           => 'required',
+            'email'          => 'required',
+            'phone'          => 'required',
+            'address'        => 'required',
+            'shop_name'      => 'required',
+            'account_holder' => 'required',
+            'account_number' => 'required',
+            'bank_name'      => 'required',
+            'bank_branch'    => 'required',
+            'city'           => 'required',
         ]);
 
         if ($validation->passes()) {
             $insertData = [
-                'name'       => $request->name,
-                'email'      => $request->email,
-                'phone'      => $request->phone,
-                'address'    => $request->address,
-                'experience' => $request->experience,
-                'salary'     => $request->salary,
-                'vacation'   => $request->vacation,
-                'city'       => $request->city,
-                'photo'      => $request->image,
+                'name'           => $request->name,
+                'email'          => $request->email,
+                'phone'          => $request->phone,
+                'address'        => $request->address,
+                'shop_name'      => $request->shop_name,
+                'photo'          => $request->image,
+                'account_holder' => $request->account_holder,
+                'account_number' => $request->account_number,
+                'bank_name'      => $request->bank_name,
+                'bank_branch'    => $request->bank_branch,
+                'city'           => $request->city,
 
             ];
 
-            $employeeInfo = Employee::find($id);
-            if (isset($request->image) && $employeeInfo->image != $request->image) {
+            $customerInfo = Customer::find($id);
+            if (isset($request->image) && $customerInfo->image != $request->image) {
                 $mainFile = $request->image;
                 $globalFunImg =  Helper::imageUpload($mainFile);
 
                 if ($globalFunImg['status'] == 1) {
-                    File::delete(public_path('uploads/') . $employeeInfo->image);
-                    File::delete(public_path('uploads/thumb/') . $employeeInfo->image);
+                    File::delete(public_path('uploads/') . $customerInfo->image);
+                    File::delete(public_path('uploads/thumb/') . $customerInfo->image);
 
                     $insertData['image'] = $globalFunImg['filaName'];
-                    $employeeInfo->update($insertData);
+                    $customerInfo->update($insertData);
                     Toastr::success('Post update successfully');
                     return redirect()->back();
                 } else {
@@ -159,7 +167,7 @@ class EmployeeController extends Controller
                     return redirect()->back();
                 }
             } else {
-                $employeeInfo->update($insertData);
+                $customerInfo->update($insertData);
                 Toastr::success('Post update successfully');
                 return redirect()->back();
             }
@@ -180,6 +188,6 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        Employee::find($id)->delete();
+        //
     }
 }

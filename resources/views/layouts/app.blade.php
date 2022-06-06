@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
 
@@ -20,6 +20,7 @@
     {{-- fontawsome --}}
     <link href="{{ asset('assets/css/icons/fontawesome/styles.min.css') }}" rel="stylesheet" type="text/css">
     {{-- fontawsome --}}
+
     <!-- /global stylesheets -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
@@ -114,7 +115,7 @@
     <script type="text/javascript" src="{{ asset('assets/js/core/libraries/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/core/libraries/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/plugins/loaders/blockui.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets\js\core\libraries/sweetalert.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets\js\core\libraries/sweetalert2.all.min.js') }}"></script>
     <!-- /core JS files -->
 
     <!-- Theme JS files -->
@@ -146,7 +147,7 @@
     </script>
 
     {{-- <script type="text/javascript" src="{{ asset('backendassets\js\plugins\notifications\sweet_alert.min.js') }}"></script> --}}
-    {{-- <script type="text/javascript" src="{{ asset('backendassets\js\pages\extra_sweetalert.js') }}"></script> --}}
+    {{-- <script type="text/javascript" src="{{ asset('assets\js\pages\extra_sweetalert.js') }}"></script> --}}
 
     <script type="text/javascript" src="{{ asset('assets/js/pages/table_responsive.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/plugins/tables/footable/footable.min.js') }}"></script>
@@ -157,11 +158,12 @@
     {{-- this is not workable --}}
     {{-- <script type="text/javascript" src="{{ asset('assets/js/pages/table_elements.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/plugins/forms/styling/switchery.min.js') }}"></script> --}}
+    <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script>
 
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::message() !!}
 
-    <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script>
+
 
     <!-- /theme JS files -->
 

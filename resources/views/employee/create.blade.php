@@ -1,76 +1,110 @@
-@extends('Backend.layouts.app')
-@section('title')
-    Team Members
-@endsection
+@extends('layouts.app')
 @section('content')
-<div class="row">
-    <!-- left column -->
-    <div class="col-md-12">
-      <!-- general form elements -->
-      <div class="card card-primary mt-3">
-        <div class="card-header">
-          <h3 class="card-title">Team</h3>
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h5 class="panel-title">Employee Create</h5>
+            <div class="heading-elements">
+                <ul class="icons-list" style="margin-top: 0px">
+                    <li style="margin-right: 10px;"><a href="{{ route('employee.index') }}"
+                            class="btn btn-info add-new">Back</a></li>
+                    <li><a data-action="collapse"></a></li>
+                    <li><a data-action="reload"></a></li>
+                    <li><a data-action="close"></a></li>
+                </ul>
+            </div>
         </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form action="{{ route('team.store') }}" method="post" enctype="multipart/form-data">
-            @csrf
-          <div class="card-body">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" class="form-control" id="name" name="name" placeholder="e.g. MD. Najmul Hasan">
-            </div>
-            <div class="form-group">
-              <label for="skill">Skill</label>
-              <input type="text" class="form-control" id="skill" name="skills" placeholder="e.g. php, laravel">
-            </div>
-            <div class="form-group">
-              <label for="designation">Designation</label>
-              <input type="text" class="form-control" id="designation" name="designation" placeholder="e.g. Web Developer">
-            </div>
-            <div class="row">
-                <div class="col-sm-8">
+        <div class="panel-body">
+            <p class="content-group-lg">Validate.js makes simple clientside form validation easy, whilst still offering
+                plenty of customization options. The plugin comes bundled with a useful set of validation methods,
+                including
+                URL and email validation, while providing an API to write your own methods. All bundled methods come
+                with
+                default error messages in english and translations into 37 other languages.</p>
+            <form id="" class="form-horizontal form-validate-jquery" action="{{ route('employee.store') }}" method="POST"
+                enctype="multipart/form-data">
+                @csrf
+                <fieldset class="content-group">
+                    <legend class="text-bold">Basic inputs</legend>
                     <div class="form-group">
-                        <label for="image">File input</label>
-                        <div class="input-group">
-                          <div class="custom-file">
-                            <input type="file" class="custom-file-input" onchange="previewFile(this);" id="image" name="image">
-                            <label class="custom-file-label" for="image">Choose file</label>
-                          </div>
+                        <label class="control-label col-lg-2">Full Name</label>
+                        <div class="col-lg-9">
+                            <input type="text" name="name" class="form-control" placeholder="Enter Your Full Name">
                         </div>
                     </div>
                     <div class="form-group">
-                      <label for="facebook">Facebook</label>
-                      <input type="text" class="form-control" id="facebook" name="facebook" placeholder="e.g. najmulhasan">
+                        <label class="control-label col-lg-2">Email Address</label>
+                        <div class="col-lg-9">
+                            <input type="email" name="email" class="form-control" placeholder="Enter Your Email Address">
+                        </div>
+                    </div>
+                    <!-- phone field -->
+                    <div class="form-group">
+                        <label class="control-label col-lg-2">Mobile</label>
+                        <div class="col-lg-9">
+                            <input type="text" name="phone" class="form-control" id="phone"
+                                placeholder="Enter your valid phone Number">
+                        </div>
+                    </div>
+                    <!-- /phone field -->
+                    <!-- address field -->
+                    <div class="form-group">
+                        <label class="control-label col-lg-2">Address</label>
+                        <div class="col-lg-9">
+                            <input type="text" name="address" class="form-control" id="address"
+                                placeholder="Enter your presente address">
+                        </div>
+                    </div>
+                    <!-- /address field -->
+                    <!-- experience field -->
+                    <div class="form-group">
+                        <label class="control-label col-lg-2">Experience</label>
+                        <div class="col-lg-9">
+                            <input type="text" name="experience" class="form-control" id="experience"
+                                placeholder="Enter your experience. e.g: Yes/No">
+                        </div>
+                    </div>
+                    <!-- /experience field -->
+                    <div class="form-group">
+                        <label class="control-label col-lg-2">Employee Photo</label>
+                        <div class="col-lg-9">
+                            <input type="file" name="image" class="file-styled">
+                        </div>
+                    </div>
+                    <!-- /styled file uploader -->
+                    <!-- salary field -->
+                    <div class="form-group">
+                        <label class="control-label col-lg-2">Salary</label>
+                        <div class="col-lg-9">
+                            <input type="text" name="salary" class="form-control" id="salary"
+                                placeholder="Enter your salary. e.g: 50000">
+                        </div>
+                    </div>
+                    <!-- /salary field -->
+                    <!-- vacation field -->
+                    <div class="form-group">
+                        <label class="control-label col-lg-2">Vacation</label>
+                        <div class="col-lg-9">
+                            <input type="text" name="vacation" class="form-control" id="vacation"
+                                placeholder="Enter your number of vacation">
+                        </div>
                     </div>
                     <div class="form-group">
-                      <label for="linkedin">Linkedin</label>
-                      <input type="text" class="form-control" id="linkedin" name="linkedin" placeholder="e.g. najmulhasan">
+                        <label class="control-label col-lg-2">City</label>
+                        <div class="col-lg-9">
+                            <input type="text" name="city" class="form-control" id="city"
+                                placeholder="Enter your city name">
+                        </div>
                     </div>
-                    <div class="form-group">
-                      <label for="twitter">Twitter</label>
-                      <input type="text" class="form-control" id="twitter" name="twitter" placeholder="e.g. najmulhasan">
-                    </div>
-                    <div class="form-group">
-                      <label for="github">Github</label>
-                      <input type="text" class="form-control" id="github" name="github" placeholder="e.g. najmulhasan">
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group mt-4">
-                        <img id="previewImg" src="{{ asset('Backend/dist/img/view image.png') }}" class="img-thumbnail img-fluid" alt="view the image" />
-                    </div>
-                </div>
-              </div>
-          </div>
-          <!-- /.card-body -->
-          <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-        </form>
-      </div>
-      <!-- /.card -->
+                    <!-- /vacation field -->
+                </fieldset>
 
+                <div class="text-right">
+                    {{-- <button type="reset" class="btn btn-default" id="reset">Reset <i
+                            class="icon-reload-alt position-right"></i></button> --}}
+                    <button id="btn" type="submit" class="btn btn-primary">Submit <i
+                            class="icon-arrow-right14 position-right"></i></button>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
 @endsection

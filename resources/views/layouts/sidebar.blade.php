@@ -39,6 +39,12 @@
                             <span>Employees</span>
                         </a>
                     </li>
+                    <li class="{{ request()->is('customer*') ? 'active' : '' }}">
+                        <a href="{{ route('customer.index') }}">
+                            <i class="icon-home2"></i>
+                            <span>Customer</span>
+                        </a>
+                    </li>
                     <!-- /main -->
                 </ul>
             </div>
