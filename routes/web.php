@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('dashboard');
 Route::resource('employee', App\Http\Controllers\EmployeeController::class);
 Route::resource('customer', App\Http\Controllers\CustomerController::class);
+Route::resource('supplier', App\Http\Controllers\SupplierController::class);

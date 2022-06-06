@@ -180,6 +180,6 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        Employee::find($id)->delete();
+        Employee::valid()->find($id)->delete();
     }
 }
