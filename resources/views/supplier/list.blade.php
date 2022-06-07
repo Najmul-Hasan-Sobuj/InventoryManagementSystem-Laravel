@@ -13,7 +13,7 @@
                 </ul>
             </div>
         </div>
-        <table id="studentTable" class="table table-togglable table-bordered table-striped table-hover">
+        <table id="studentTable" class="table table-togglable table-bordered table-striped table-hover data-list">
             <thead>
                 <tr>
                     <th data-toggle="true">SL</th>

@@ -193,6 +193,6 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Supplier::valid()->find($id)->delete();
     }
 }
