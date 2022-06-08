@@ -35,20 +35,26 @@
                     </li>
                     <li class="{{ request()->is('employee*') ? 'active' : '' }}">
                         <a href="{{ route('employee.index') }}">
-                            <i class="icon-home2"></i>
+                            <i class="fa fa-user"></i>
                             <span>Employees</span>
                         </a>
                     </li>
                     <li class="{{ request()->is('customer*') ? 'active' : '' }}">
                         <a href="{{ route('customer.index') }}">
-                            <i class="icon-home2"></i>
+                            <i class="fa fa-users"></i>
                             <span>Customer</span>
                         </a>
                     </li>
                     <li class="{{ request()->is('supplier*') ? 'active' : '' }}">
                         <a href="{{ route('supplier.index') }}">
-                            <i class="icon-home2"></i>
+                            <i class="fa fa-truck"></i>
                             <span>Supplier</span>
+                        </a>
+                    </li>
+                    <li class="{{ request()->is('salary*') ? 'active' : '' }}">
+                        <a href="{{ route('salary.index') }}">
+                            <i class="fa fa-money"></i>
+                            <span>Advanced Salary</span>
                         </a>
                     </li>
                     <!-- /main -->

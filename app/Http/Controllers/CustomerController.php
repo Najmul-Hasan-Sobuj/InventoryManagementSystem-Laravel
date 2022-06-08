@@ -188,6 +188,6 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        Customer::valid()->find($id)->delete();
+        Customer::find($id)->delete();
     }
 }
