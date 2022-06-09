@@ -18,3 +18,4 @@ Route::resource('employee', App\Http\Controllers\EmployeeController::class);
 Route::resource('customer', App\Http\Controllers\CustomerController::class);
 Route::resource('supplier', App\Http\Controllers\SupplierController::class);
 Route::resource('salary', App\Http\Controllers\SalaryController::class);
+Route::resource('category', App\Http\Controllers\CategoryController::class);

@@ -57,6 +57,12 @@
                             <span>Advanced Salary</span>
                         </a>
                     </li>
+                    <li class="{{ request()->is('category*') ? 'active' : '' }}">
+                        <a href="{{ route('category.index') }}">
+                            <i class="icon-stack2"></i>
+                            <span>Category</span>
+                        </a>
+                    </li>
                     <!-- /main -->
                 </ul>
             </div>
