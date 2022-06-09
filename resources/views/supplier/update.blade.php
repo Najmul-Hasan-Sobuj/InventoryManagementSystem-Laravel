@@ -116,8 +116,6 @@
                 </fieldset>
 
                 <div class="text-right">
-                    {{-- <button type="reset" class="btn btn-default" id="reset">Reset <i
-                            class="icon-reload-alt position-right"></i></button> --}}
                     <button id="btn" type="submit" class="btn btn-primary">Update <i
                             class="icon-arrow-right14 position-right"></i></button>
                 </div>

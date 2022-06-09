@@ -7,6 +7,7 @@ use App\Models\Salary;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class SalaryController extends Controller
@@ -82,7 +83,8 @@ class SalaryController extends Controller
      */
     public function show($id)
     {
-        //
+        $data['salary'] = Salary::join('employees', 'salaries.emp_id', 'employees.id')->select('salaries.*', 'employees.name', 'employees.salary', 'employees.photo')->orderBy('id', 'asc')->get();
+        return view('salary.view', $data);
     }
 
     /**
@@ -93,7 +95,9 @@ class SalaryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['employee'] = Employee::get();
+        $data['salary'] = Salary::find($id);
+        return view('salary.update', $data);
     }
 
     /**
@@ -105,7 +109,33 @@ class SalaryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validation = Validator::make($request->all(), [
+            'emp_id'         => 'required',
+            'month'          => 'required',
+            'year'           => 'required',
+            'advance_salary' => 'required',
+        ]);
+
+        if ($validation->passes()) {
+            $insertData = [
+                'emp_id'         => $request->emp_id,
+                'month'          => $request->month,
+                'year'           => $request->year,
+                'advance_salary' => $request->advance_salary,
+
+            ];
+
+            $employeeInfo = Salary::find($id);
+            $employeeInfo->update($insertData);
+            Toastr::success('Post update successfully');
+            return redirect()->back();
+        } else {
+            $messages = $validation->messages();
+            foreach ($messages->all() as $message) {
+                Toastr::error($message, 'Failed', ['timeOut' => 10000]);
+            }
+            return redirect()->back()->withErrors($validation);
+        }
     }
 
     /**

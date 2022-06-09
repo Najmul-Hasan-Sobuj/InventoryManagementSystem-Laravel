@@ -2,10 +2,10 @@
 @section('content')
     <div class="panel panel-flat">
         <div class="panel-heading">
-            <h5 class="panel-title">Employee Details</h5>
+            <h5 class="panel-title">Advanced Salary Details</h5>
             <div class="heading-elements">
                 <ul class="icons-list" style="margin-top: 0px">
-                    <li style="margin-right: 10px;"><a href="{{ route('employee.index') }}"
+                    <li style="margin-right: 10px;"><a href="{{ route('salary.index') }}"
                             class="btn btn-info add-new">Back</a></li>
                     <li><a data-action="collapse"></a></li>
                     <li><a data-action="reload"></a></li>
@@ -20,83 +20,41 @@
                 URL and email validation, while providing an API to write your own methods. All bundled methods come
                 with
                 default error messages in english and translations into 37 other languages.</p>
+            {{-- id,emp_id,month,year,advance_salary = salaryTable --}}
+            {{-- name,salary,photo = EmployeeTable --}}
             <form class="form-horizontal form-validate-jquery">
                 <fieldset class="content-group">
                     <legend class="text-bold">Basic inputs</legend>
-                    <div class="form-group">
-                        <label class="control-label col-lg-2">Full Name</label>
-                        <div class="col-lg-9">
-                            <input type="text" name="name" value="{{ $employee->name }}" class="form-control"
-                                placeholder="Enter Your Full Name" disabled>
+                    @foreach ($salary as $item)
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">Employee Name</label>
+                            <div class="col-lg-9">
+                                <input type="text" name="emp_name" value="{{ $item->name }}" class="form-control"
+                                    readOnly="">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-lg-2">Email Address</label>
-                        <div class="col-lg-9">
-                            <input type="email" name="email" value="{{ $employee->email }}" class="form-control"
-                                placeholder="Enter Your Email Address" disabled>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Month</label>
+                            <div class="col-lg-9">
+                                <input type="text" name="month" value="{{ $item->month }}" class="form-control"
+                                    readOnly="">
+                            </div>
                         </div>
-                    </div>
-                    <!-- phone field -->
-                    <div class="form-group">
-                        <label class="control-label col-lg-2">Mobile</label>
-                        <div class="col-lg-9">
-                            <input type="text" name="phone" value="{{ $employee->phone }}" class="form-control"
-                                id="phone" placeholder="Enter your valid phone Number" disabled>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">Year</label>
+                            <div class="col-lg-9">
+                                <input type="text" name="year" value="{{ $item->year }}" class="form-control"
+                                    readOnly="">
+                            </div>
                         </div>
-                    </div>
-                    <!-- /phone field -->
-                    <!-- address field -->
-                    <div class="form-group">
-                        <label class="control-label col-lg-2">Address</label>
-                        <div class="col-lg-9">
-                            <input type="text" name="address" value="{{ $employee->address }}" class="form-control"
-                                id="address" placeholder="Enter your presente address" disabled>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">Advanced Salary</label>
+                            <div class="col-lg-9">
+                                <input type="text" name="advance_salary" value="{{ $item->advance_salary }}"
+                                    class="form-control" readOnly="">
+                            </div>
                         </div>
-                    </div>
-                    <!-- /address field -->
-                    <!-- experience field -->
-                    <div class="form-group">
-                        <label class="control-label col-lg-2">Experience</label>
-                        <div class="col-lg-9">
-                            <input type="text" name="experience" value="{{ $employee->experience }}"
-                                class="form-control" id="experience" placeholder="Enter your experience. e.g: Yes/No"
-                                disabled>
-                        </div>
-                    </div>
-                    <!-- /experience field -->
-                    {{-- <div class="form-group">
-                        <label class="control-label col-lg-2">Employee Photo</label>
-                        <div class="col-lg-9">
-                            <input type="file" name="image" class="file-styled">
-                        </div>
-                    </div> --}}
-                    <!-- /styled file uploader -->
-                    <!-- salary field -->
-                    <div class="form-group">
-                        <label class="control-label col-lg-2">Salary</label>
-                        <div class="col-lg-9">
-                            <input type="text" name="salary" value="{{ $employee->salary }}" class="form-control"
-                                id="salary" placeholder="Enter your salary. e.g: 50000" disabled>
-                        </div>
-                    </div>
-                    <!-- /salary field -->
-                    <!-- vacation field -->
-                    <div class="form-group">
-                        <label class="control-label col-lg-2">Vacation</label>
-                        <div class="col-lg-9">
-                            <input type="text" name="vacation" value="{{ $employee->vacation }}" class="form-control"
-                                id="vacation" placeholder="Enter your number of vacation" disabled>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-lg-2">City</label>
-                        <div class="col-lg-9">
-                            <input type="text" name="city" value="{{ $employee->city }}" class="form-control" id="city"
-                                placeholder="Enter your city name" disabled>
-                        </div>
-                    </div>
-                    <!-- /vacation field -->
+                    @endforeach
                 </fieldset>
             </form>
         </div>
